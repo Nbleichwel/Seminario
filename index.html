@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Centro de Treinamento de Vedações</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <!-- ESTA LINHA CORRIGE O DESIGN -->
+  <link rel="stylesheet" href="style.css"> 
+  
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <main id="container">
+    <section id="main-menu" class="screen active">
+      <h1>Centro de Treinamento de Vedações</h1>
+      
+      <div class="module-selection">
+        
+        <!-- MÓDULO 1: TREINAMENTO -->
+        <a href="estagiario/" id="module-estagiario" class="module-card">
+          <h2>Modo Treinamento</h2>
+          <div class="module-icon">👨‍🎓</div>
+          <h3>Missão: Ajude o Estagiário</h3>
+          <p>Aprenda os fundamentos corrigindo os erros de um novato. Ideal para começar.</p>
+          <div class="big-btn">[INICIAR TREINAMENTO]</div>
+        </a>
+
+        <!-- MÓDULO 2: SIMULAÇÃO (BLOQUEADO) -->
+        <a href="escape/" id="module-escape" class="module-card">
+          <div id="lock-overlay">
+            <div class="lock-icon">🔒</div>
+            <span>Complete o Treinamento para Desbloquear</span>
+          </div>
+          <h2>Modo Simulação de Crise</h2>
+          <div class="module-icon">⏱️</div>
+          <h3>Protocolo de Emergência</h3>
+          <p>Teste seu conhecimento sob pressão. Resolva os enigmas antes que o tempo acabe.</p>
+          <div class="big-btn">[INICIAR SIMULAÇÃO]</div>
+        </a>
+
+        <!-- MÓDULO 3: CSI -->
+        <a href="csi/" id="module-csi" class="module-card">
+          <h2>CSI: Investigação de Falhas</h2>
+          <div class="module-icon">🔎</div>
+          <h3>Missão: Analise a Cena do Crime</h3>
+          <p>Uma vedação falhou. Analise as evidências e diagnostique a causa raiz do problema.</p>
+          <div class="big-btn">[INICIAR INVESTIGAÇÃO]</div>
+        </a>
+
+        <!-- MÓDULO 4: OTIMIZAÇÃO -->
+        <a href="otimizacao/" id="module-otimizacao" class="module-card">
+            <h2>Modo Otimização de Projeto</h2>
+            <div class="module-icon">⚙️</div>
+            <h3>Missão: Melhore o Sistema</h3>
+            <p>Um sistema funcional precisa de um upgrade. Escolha a melhor solução para otimizar o desempenho.</p>
+            <div class="big-btn">[INICIAR PROJETO]</div>
+        </a>
+
+      </div>
+    </section>
+  </main>
+</body>
+</html>

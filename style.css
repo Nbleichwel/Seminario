@@ -1,0 +1,87 @@
+body {
+  background: #1a1a1a;
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+h1, h2, h3 {
+  font-family: 'VT323', monospace;
+}
+#container {
+  width: 100%;
+  max-width: 900px;
+}
+#main-menu h1 {
+  color: #fbc02d;
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px #d32f2f;
+}
+.module-selection {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap; /* <-- ALTERAÇÃO APLICADA AQUI */
+}
+.module-card {
+  background: #2d2d2d;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 25px;
+  width: 350px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.module-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+.module-card h2 { font-size: 1.8em; color: #fff; margin-top: 0; }
+.module-card h3 { font-size: 1.5em; color: #fbc02d; }
+.module-card .module-icon { font-size: 3em; margin-bottom: 15px; }
+.module-card p { color: #bdbdbd; line-height: 1.6; }
+.big-btn {
+  font-family: 'VT323', monospace;
+  font-size: 1.4em;
+  padding: 12px 28px;
+  background: #fbc02d;
+  color: #1a1a1a;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  margin-top: 20px;
+  display: inline-block;
+}
+#lock-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 10;
+  transition: opacity 0.5s;
+  opacity: 1;
+  border-radius: 8px;
+}
+.module-card.locked .big-btn {
+  background: #666;
+  cursor: not-allowed;
+}
+.module-card.unlocked #lock-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+.lock-icon { font-size: 4em; }
+
+@media (max-width: 800px) {
+  .module-selection { flex-direction: column; align-items: center; }
+  .module-card { width: 90%; max-width: 400px; }
+}

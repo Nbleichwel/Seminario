@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Escape Room: Protocolo V-101</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="escape.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <script src="escape.js" defer></script>
+</head>
+<body>
+  <div id="scanline"></div>
+  <main id="game-terminal">
+    <div class="top-panel">
+      <span id="timer" class="timer">01:30</span>
+      <span id="progress"></span>
+      <a href="../" class="back-btn">[SAIR DA SIMULAÇÃO]</a>
+    </div>
+    <div id="visual-hint"></div>
+    <div id="enigma-text"></div>
+    <div id="options-container"></div>
+    <div id="code-entry" class="hidden">
+        <div id="code-entry-prompt"></div>
+        <form id="code-form">
+            <input id="code-input" type="text" maxlength="5" pattern="[0-9]{5}" autocomplete="off" required>
+            <button type="submit" class="big-btn">[DESTRAVAR SISTEMA]</button>
+        </form>
+        <div id="code-error" class="error-msg"></div>
+    </div>
+    <div id="result-overlay" class="hidden">
+        <div id="result-box">
+            <div id="result-title"></div>
+            <div id="result-msg"></div>
+            <a href="../" class="big-btn">[VOLTAR AO MENU]</a>
+        </div>
+    </div>
+  </main>
+  <audio id="sound-alarm" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12be0d0eab.mp3" preload="auto"></audio>
+  <audio id="sound-bip" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9eaf8c.mp3" preload="auto"></audio>
+  <audio id="sound-ok" src="https://cdn.pixabay.com/audio/2022/10/16/audio_142c6bd0ea.mp3" preload="auto"></audio>
+  <audio id="sound-err" src="https://cdn.pixabay.com/audio/2022/03/15/audio_114f2c8e5d.mp3" preload="auto"></audio>
+  <audio id="sound-win" src="https://cdn.pixabay.com/audio/2022/03/10/audio_c3b9b4a8b5.mp3" preload="auto"></audio>
+  <audio id="sound-fail" src="https://cdn.pixabay.com/audio/2023/04/13/audio_a17e7fa26a.mp3" preload="auto"></audio>
+</body>
+</html>

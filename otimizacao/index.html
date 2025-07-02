@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Otimização de Projeto</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="otimizacao.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="otimizacao.js" defer></script>
+</head>
+<body>
+  <main id="game-container">
+    <div class="top-panel">
+        <span id="progress" class="progress-text"></span>
+        <a href="../" class="back-btn">[VOLTAR AO MENU]</a>
+    </div>
+    <div id="project-box">
+        <div class="box-header">BRIEFING DO PROJETO</div>
+        <div id="project-scenario"></div>
+        <div class="box-header" style="margin-top: 15px; border-top: 2px solid #63b3ed; padding-top:10px;">META DE OTIMIZAÇÃO</div>
+        <div id="project-goal"></div>
+    </div>
+    <div id="solution-box">
+        <div id="user-question"></div>
+        <div id="options-container"></div>
+    </div>
+    <div id="result-overlay" class="hidden">
+        <div id="result-box">
+            <div id="result-title"></div>
+            <div id="result-msg"></div>
+            <a href="../" class="big-btn">[CONTINUAR]</a>
+        </div>
+    </div>
+  </main>
+</body>
+</html>

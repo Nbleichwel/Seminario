@@ -1,0 +1,189 @@
+/* ====================================================== */
+/* ============== ESTILOS GLOBAIS E TRANSIÇÕES ============ */
+/* ====================================================== */
+:root {
+  --font-pixel: 'VT323', monospace;
+  --font-mono: 'Roboto Mono', 'Courier New', monospace;
+  --color-dark-bg: #1a1a1a;
+  --color-primary-yellow: #fbc02d;
+  --color-accent-red: #d32f2f;
+  --color-dark-card: #2d2d2d;
+  --color-border: #444;
+}
+
+body {
+  background: var(--color-dark-bg);
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-mono);
+  overflow: hidden;
+}
+
+h1, h2, h3 { font-family: var(--font-pixel); }
+
+.screen {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease-out, visibility 0.4s;
+}
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ====================================================== */
+/* ================= TELA DO MENU PRINCIPAL =============== */
+/* ====================================================== */
+#main-menu-screen #container { width: 100%; max-width: 900px; }
+#main-menu h1 { color: var(--color-primary-yellow); font-size: 3em; text-align: center; margin-bottom: 30px; text-shadow: 2px 2px var(--color-accent-red); }
+.module-selection { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; }
+
+/* ===== MUDANÇA AQUI: Adicionado overflow-y e padding ===== */
+.module-card { 
+  background: var(--color-dark-card); 
+  border: 1px solid var(--color-border); 
+  border-radius: 8px; 
+  padding: 25px; 
+  width: 350px; 
+  text-align: center; 
+  position: relative; 
+  text-decoration: none; 
+  color: inherit; 
+  transition: transform 0.2s, box-shadow 0.2s; 
+  cursor: pointer; 
+  overflow-y: auto; /* Permite a rolagem se o conteúdo for maior */
+  max-height: 380px; /* Define uma altura máxima para o card */
+}
+.module-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+.module-card h2 { font-size: 1.8em; color: #fff; margin-top: 0; }
+.module-card h3 { font-size: 1.5em; color: var(--color-primary-yellow); }
+.module-card .module-icon { font-size: 3em; margin-bottom: 15px; }
+.module-card p { color: #bdbdbd; line-height: 1.6; }
+.module-card .big-btn { margin-top: 20px; }
+
+/* ===== NOVO: Estilização da Barra de Rolagem ===== */
+.module-card::-webkit-scrollbar {
+  width: 8px;
+}
+.module-card::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+.module-card::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+.module-card::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-yellow);
+}
+/* Para Firefox */
+.module-card {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #2d2d2d;
+}
+
+
+#lock-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; transition: opacity 0.5s; opacity: 1; border-radius: 8px; }
+.module-card.locked { cursor: not-allowed; }
+.module-card.unlocked #lock-overlay { opacity: 0; pointer-events: none; }
+.lock-icon { font-size: 4em; }
+
+/* ====================================================== */
+/* =============== ELEMENTOS COMUNS DE JOGO =============== */
+/* ====================================================== */
+#game-container, #game-terminal { width: 100%; }
+.top-panel { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.progress-text { font-size: 1.2em; font-weight: 700; font-family: var(--font-pixel); }
+.back-to-menu-btn { color: #999; text-decoration: none; font-family: var(--font-pixel); font-size: 1.2em; }
+.box-header { font-weight: 700; margin-bottom: 10px; font-family: var(--font-pixel); font-size: 1.2em; }
+.hidden { display: none !important; }
+
+.big-btn { font-family: var(--font-pixel); font-size: 1.4em; padding: 12px 28px; background: var(--color-primary-yellow); color: var(--color-dark-bg); border-radius: 5px; border: none; font-weight: 700; display: inline-block; cursor: pointer; text-decoration: none; }
+.option-btn { font-family: var(--font-mono); font-size: 1em; border-radius: 5px; padding: 12px; text-align: left; cursor: pointer; transition: all .18s; }
+.option-btn.wrong { background: #c53030 !important; color: #fff !important; border-color: #c53030 !important; }
+.option-btn.correct { background: #38a169 !important; color: #fff !important; border-color: #38a169 !important; }
+
+#result-overlay { position: fixed; z-index: 100; background: rgba(0,0,0,.85); }
+#result-box { background: var(--color-dark-card); padding: 30px; border-radius: 8px; text-align: center; border: 1px solid #718096; width: 90%; max-width: 450px; }
+#result-title { font-size: 2em; margin-bottom: 20px; }
+#result-title.success { color: #9ae6b4; }
+#result-title.fail { color: #feb2b2; }
+#result-msg { font-size: 1.1em; margin-bottom: 30px; color: #e2e8f0; line-height: 1.6; }
+#result-box .big-btn { background: #f6e05e; color: #1a202c; border-bottom: 3px solid #d69e2e; }
+
+/* ====================================================== */
+/* ============ ESTILOS DOS JOGOS ESPECÍFICOS ============ */
+/* ====================================================== */
+
+/* --- TREINAMENTO (Estilo Clássico) --- */
+#estagiario-game-screen #game-container { max-width: 520px; background: #2d2d2d; border-radius: 8px; padding: 20px; border: 1px solid #444; }
+#estagiario-game-screen .progress-text, #estagiario-game-screen .box-header { color: #fbc02d; }
+#estagiario-game-screen #intern-choice-box { background: #424242; border: 1px solid #666; border-left: 5px solid #d32f2f; border-radius: 5px; padding: 15px; margin-bottom: 20px; position: relative; }
+#estagiario-game-screen #intern-scenario { color: #fff; margin-bottom: 15px; line-height: 1.6; }
+#estagiario-game-screen #intern-justification { color: #bdbdbd; font-style: italic; background: #333; padding: 10px; border-radius: 4px; }
+#estagiario-game-screen #intern-stamp { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-15deg); font-size: 3em; font-family: var(--font-pixel); color: rgba(255,0,0,.7); border: 5px solid rgba(255,0,0,.7); padding: 5px 15px; border-radius: 10px; pointer-events: none; }
+#estagiario-game-screen #user-correction-box { padding: 10px; background: #3c3c3c; border-radius: 5px; margin-top: 20px; text-align: center; }
+#estagiario-game-screen #estagiario-user-question { color: #fff; font-size: 1.1em; font-weight: 700; margin-bottom: 15px; text-align: center; }
+#estagiario-game-screen .option-btn { background: #555; color: #fff; border: 1px solid #777; }
+#estagiario-game-screen .option-btn:hover:not([disabled]) { background: #666; }
+
+/* --- SIMULAÇÃO (Estilo Terminal/Hacker) --- */
+#escape-game-screen { background: #05091a; }
+#escape-game-screen #game-terminal { max-width: 420px; background: #0a1124; border-radius: 10px; box-shadow: 0 4px 32px #000a; border: 3px solid #1f2937; padding: 18px; position: relative; z-index: 2; }
+#escape-game-screen #scanline { pointer-events: none; position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; z-index: 1; background: repeating-linear-gradient(to bottom, rgba(0,255,0,.03) 0, rgba(0,0,0,.04) 2px, transparent 4px, transparent 8px); mix-blend-mode: lighten; opacity: .46; }
+#escape-game-screen .top-panel { font-size: 1.15em; margin-bottom: 14px; }
+#escape-game-screen .timer { color: #0f0; font-size: 2em; letter-spacing: .11em; background: #23282f; border-radius: 7px; padding: 2px 14px; display: inline-block; border: 2px solid #0f0; transition: color .18s, border-color .18s; }
+#escape-game-screen .timer.lowtime { color: red; border-color: #ff4444; animation: blink .7s steps(2,start) infinite; }
+#escape-game-screen #escape-progress { color: #ffd600; font-size: 1.18em; letter-spacing: .07em; }
+#escape-game-screen #visual-hint { margin: 22px 0 18px 0; display: flex; align-items: center; justify-content: center; min-height: 90px; }
+#escape-game-screen #enigma-text, #code-entry-prompt { font-size: 1.24em; color: #d2ffbe; background: #172554; padding: 18px 13px; border-radius: 8px; margin-bottom: 17px; box-shadow: 0 0 8px #0003; min-height: 70px; border-left: 4px solid #0f0; }
+#escape-game-screen .option-btn { font-family: var(--font-pixel); font-size: 1.15em; background: #020e1c; color: #ffea00; border: 2px solid #263238; letter-spacing: .04em; }
+#escape-game-screen .option-btn:hover:not([disabled]) { background: #0f0; color: #1a1a1a; border-color: #0f0; }
+#escape-game-screen .option-btn.correct { background: #0f0!important;color: #222!important;border-color: #0f0!important;}
+#escape-game-screen .cursor { display: inline-block; width: 10px; background-color: #0f0; animation: blink .5s infinite; vertical-align: bottom; }
+#escape-game-screen #code-entry { text-align: center; }
+#escape-game-screen #code-form { margin-top: 25px; display: flex; flex-direction: column; justify-content: center; gap: 20px; align-items: center; }
+#escape-game-screen #code-input { font-family: var(--font-pixel); font-size: 2.1em; width: 120px; text-align: center; padding: 7px 0; border-radius: 8px; border: 2px solid #0f0; background: #020e1c; color: #0f0; letter-spacing: .12em; outline: 0; }
+#escape-game-screen #code-input:focus { border-color: #ffea00; }
+#escape-game-screen .error-msg { color: #ff4444; margin-top: 10px; text-align: center; font-size: 1.12em; min-height: 20px; }
+#escape-game-screen .big-btn { background: #ffea00; border-radius: 9px; }
+@keyframes blink { to { visibility: hidden; } }
+
+/* --- CSI & OTIMIZAÇÃO (Estilo Investigativo/Projeto) --- */
+#csi-game-screen, #otimizacao-game-screen { background: #1a202c; }
+#csi-game-screen #game-container, #otimizacao-game-screen #game-container { max-width: 550px; background: #2d3748; border-radius: 8px; padding: 20px; border: 1px solid #4a5568; }
+#csi-game-screen .back-to-menu-btn, #otimizacao-game-screen .back-to-menu-btn { color: #a0aec0; }
+#csi-game-screen .option-btn, #otimizacao-game-screen .option-btn { background: #5a6981; color: #fff; border: 1px solid #718096; }
+#csi-game-screen .option-btn:hover:not([disabled]), #otimizacao-game-screen .option-btn:hover:not([disabled]) { background: #718096; }
+#csi-game-screen #csi-user-question, #otimizacao-game-screen #otimizacao-user-question { color: #fff; font-size: 1.1em; font-weight: 700; margin-bottom: 15px; text-align: center; }
+
+/* CSI Específico */
+#csi-game-screen .progress-text, #csi-game-screen .box-header { color: #f6e05e; }
+#csi-game-screen #report-box { background: #4a5568; border: 1px solid #718096; border-left: 5px solid #e53e3e; border-radius: 5px; padding: 15px; margin-bottom: 20px; }
+#csi-game-screen #failure-scenario { color: #e2e8f0; margin-bottom: 15px; line-height: 1.6; }
+#csi-game-screen #evidence-box { background: #2d3748; padding: 10px; border-radius: 4px; text-align: center; }
+#csi-game-screen .evidence-header { color: #cbd5e0; font-size: 0.9em; margin-bottom: 10px; font-weight: bold; }
+#csi-game-screen #evidence-photo { max-width: 200px; height: auto; border: 3px solid #718096; border-radius: 4px; }
+#csi-game-screen #analysis-box { padding: 10px; background: #3c4a5f; border-radius: 5px; margin-top: 20px; }
+
+/* Otimização Específico */
+#otimizacao-game-screen .progress-text, #otimizacao-game-screen .box-header { color: #63b3ed; }
+#otimizacao-game-screen #project-box { background: #4a5568; border: 1px solid #718096; border-left: 5px solid #63b3ed; border-radius: 5px; padding: 15px; margin-bottom: 20px; }
+#otimizacao-game-screen #project-scenario { color: #e2e8f0; margin-bottom: 15px; line-height: 1.6; }
+#otimizacao-game-screen .project-goal-header { margin-top: 15px; border-top: 2px solid #63b3ed; padding-top: 10px; }
+#otimizacao-game-screen #project-goal { color: #bee3f8; font-weight: bold; font-style: italic; }
+#otimizacao-game-screen #solution-box { padding: 10px; background: #3c4a5f; border-radius: 5px; margin-top: 20px; }
+#otimizacao-game-screen #result-box .big-btn {background: #63b3ed; color: #1a202c; border-bottom:3px solid #2b6cb0;}
+
+/* Responsividade */
+@media (max-width: 800px) {
+  .module-selection { flex-direction: column; align-items: center; }
+  .module-card { width: 90%; max-width: 400px; }
+}

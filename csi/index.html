@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>CSI: Investigação de Falhas</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="csi.css">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="csi.js" defer></script>
+</head>
+<body>
+  <main id="game-container">
+    <div class="top-panel">
+        <span id="progress" class="progress-text"></span>
+        <a href="../" class="back-btn">[VOLTAR AO MENU]</a>
+    </div>
+    <div id="report-box">
+        <div class="box-header">RELATÓRIO DE FALHA</div>
+        <div id="failure-scenario"></div>
+        <div id="evidence-box">
+            <div class="evidence-header">EVIDÊNCIA FOTOGRÁFICA:</div>
+            <img id="evidence-photo" src="" alt="Foto da vedação com falha">
+        </div>
+    </div>
+    <div id="analysis-box">
+        <div id="user-question"></div>
+        <div id="options-container"></div>
+    </div>
+    <div id="result-overlay" class="hidden">
+        <div id="result-box">
+            <div id="result-title"></div>
+            <div id="result-msg"></div>
+            <a href="../" class="big-btn">[CONTINUAR]</a>
+        </div>
+    </div>
+  </main>
+  <!-- Sons podem ser os mesmos do estagiário, se desejar -->
+</body>
+</html>
